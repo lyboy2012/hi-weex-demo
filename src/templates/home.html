@@ -1,0 +1,43 @@
+<div>
+  <loading :show="isLoading"></loading>
+  <div class="goto-top" @click="goToTop" v-if="showTop">
+    <image class="goto-top-img" src="https://gw.alicdn.com/tps/TB1QgVROVXXXXc4XpXXXXXXXXXX-200-200.png"></image>
+  </div>
+  <list class="scroller-container" v-if="!isLoading">
+    <refresh class="refresh-view"  :display="refresh_display" @refresh="onrefresh">
+      <loading-indicator class="loading-indicator"></loading-indicator>
+    </refresh>
+    <!--banner begin-->
+    <cell ref="topItem" class="banner-panel">
+      <slider class="slider" interval="3000" :autoPlay="true">
+        <indicator class="indicator" v-if="banners.length>1"></indicator>
+        <sliderPage v-for="(item,i) in banners" :item="item" v-bind:key="item.id" :monitorPoint="'HomeBanner'+(i+1)"></sliderPage>
+      </slider>
+    </cell>
+    <!--banner end-->
+
+    <cell class="roundtable-panel">
+      <div class="roundtable-content">
+        <slider-neighbor style="width:830px;height:400px;margin-left: -110px" neighbor-scale="0.9" neighbor-space="0"  current-index="0"  current-item-scale="1" interval="100" neighbor-alpha="1" auto-play="false">
+          <image style="width:680px;background-color:#FFFFDF;height:400;" src="https://gw.alicdn.com/tps/TB1dzanMVXXXXXQXVXXXXXXXXXX-573-412.png"></image>
+          <image style="width:680px;background-color:#FFFFDF;height:400;" src="https://gw.alicdn.com/tps/TB1p9CCMVXXXXa_XFXXXXXXXXXX-450-340.png"></image>
+          <image style="width:680px;background-color:#FFFFDF;height:400;" src="https://gw.alicdn.com/tps/TB1zpSiMVXXXXchXFXXXXXXXXXX-448-338.png"></image>
+          <image style="width:680px;background-color:#FFFFDF;height:400;" src="https://gw.alicdn.com/tps/TB1EuGIMVXXXXcoXpXXXXXXXXXX-452-337.png"></image>
+        </slider-neighbor>
+
+
+      </div> 
+    </cell>
+    <cell class="article-item" v-for="(item,i) in list" v-bind:key="item.id"  @appear="onappear" @disappear="ondisappear" :index="i">
+      <div>
+        <text>数据项{{item.name}}</text>
+      </div>
+      
+    </cell>
+    <loading class="loading-view" :display="loading_display" @loading="onloading">
+      <!-- <loading-indicator class="indicator"></loading-indicator> -->
+      <loading-indicator class="loading-indicator"></loading-indicator>
+      <text style="color:#999;font-size:24">{{loading_more_tips}}</text>
+    </loading>
+  </list>
+</div>

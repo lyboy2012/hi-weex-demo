@@ -1,0 +1,20 @@
+.slider-page {
+  position: relative;
+  width: 750px;
+  height: 250px;
+}
+
+.slider-item {
+  width: 750px;
+  height: 250px;
+}
+
+.slider-item-link {
+  width: 750px;
+  height: 250px;
+}
+
+.slider-item-image {
+  width: 750px;
+  height: 250px;
+}
